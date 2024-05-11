@@ -12,16 +12,17 @@
 </head>
 <body>
 <div class="detail">
+    <form class="row g-3" method="post" action="/${id}">
     <div class="vizitka">
         <div class="jmeno">${vizitkaDetail.jmeno}</div>
         <div class="firma">${vizitkaDetail.firma}</div>
         <div class="udaje">
             <div class="adresa">
-                <div>V${vizitkaDetail.ulice}</div>
+                <div>${vizitkaDetail.ulice}</div>
                 <div><span>${vizitkaDetail.obecPsc}</span></div>
             </div>
             <div class="kontakty">
-                <div><i class="las la-at"></i> <span>${vizitkaDetail.mail}</span></div>
+                <div><i class="las la-at"></i> <span>[#if vizitkaDetail.mail??]${vizitkaDetail.mail}[#else]<em>Neuvedeno</em>[/#if]</span></div>
                 <div><i class="las la-phone-alt"></i> <span>[#if vizitkaDetail.telefon??]${vizitkaDetail.telefon}[#else]<em>Neuvedeno</em>[/#if]</span></div>
                 <div><i class="las la-globe"></i> <span>${vizitkaDetail.web}</span></div>
             </div>
@@ -30,7 +31,7 @@
     <div class="mapa">
         <iframe style="border:none" src="https://frame.mapy.cz/?q=${vizitkaDetail.getCelaAdresa()}" width="100%" height="100%" frameborder="0"></iframe>
     </div>
-
+    </form>
 </div>
 </body>
 </html>

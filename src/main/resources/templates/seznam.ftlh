@@ -23,14 +23,78 @@
                     <div><span>${vizitka.obecPsc}</span></div>
                 </div>
                 <div class="kontakty">
-                    <div><i class="las la-at"></i> <span>${vizitka.mail}</span></div>
+                    <div><i class="las la-at"></i> <span>[#if vizitka.mail??]${vizitka.mail}[#else]<em>Neuvedeno</em>[/#if]</span></div>
                     <div><i class="las la-phone-alt"></i> <span>[#if vizitka.telefon??]${vizitka.telefon}[#else]<em>Neuvedeno</em>[/#if]</span></div>
                     <div><i class="las la-globe"></i> <span>${vizitka.web}</span></div>
                 </div>
             </div>
+            <form method="post" action="/delete" class="form_delete">
+                <input type="hidden" name="id" value="${vizitka?index}"/>
+                <button type="submit">Smazat</button>
+            </form>
         </div>
     </a>
     [/#list]
+
+    <div class="container">
+        <h2 class="container_h2">Přidej vizitku</h2>
+        <form action="/" method="post" class="row g-3">
+            <div class="container_field">
+                <div class="first_field">
+                    <div class="first_field_fl">
+            <label >Jméno a příjemní: </label>
+            <input id="jmeno" type="text" name="jmeno" value="" required>
+                    </div>
+                    <div class="first_field_fl">
+                    <label >Firma: </label>
+                    <input id="firma" type="text" name="firma" value="" required>
+                    </div>
+                </div>
+            </div>
+       <br>
+            <div class="container_field">
+                <div class="first_field">
+                    <div class="first_field_fl">
+                        <label >Ulice: </label>
+                        <input id="ulice" type="text" name="ulice" value="" required>
+                    </div>
+                    <div class="first_field_fl">
+                        <label >PSČ: </label>
+                        <input id="obecPsc" type="text" name="obecPsc" value="" required>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="container_field">
+                <div class="first_field">
+                    <div class="first_field_fl">
+                        <label >Mail: </label>
+                        <input id="mail" type="text" name="mail" value="" required>
+                    </div>
+                    <div class="first_field_fl">
+                        <label >Telefon: </label>
+                        <input id="telefon" type="text" name="telefon" value="" required>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="container_field">
+                <div class="first_field">
+                    <div class="first_field_fl">
+                        <label >Web: </label>
+                        <input id="web" type="text" name="web" value="" required>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="container_field">
+                <div class="first_field">
+                    <button type="submit" class="button_add">Přidej</button>
+                </div>
+            </div>
+        </form>
+            </div>
+    </a>
  </div>
 </body>
 </html>

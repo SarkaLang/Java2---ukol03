@@ -1,9 +1,12 @@
 package cz.czechitas.java2webapps.ukol3.controller;
 
-import entity.Vizitka;
+import cz.czechitas.java2webapps.ukol3.service.VizitkaService;
 import org.springframework.stereotype.Controller;
+import cz.czechitas.java2webapps.ukol3.entity.Vizitka;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -14,30 +17,37 @@ import java.util.List;
 @Controller
 public class VizitkaController {
 
-    public final List<Vizitka> seznamVizitek = List.of(
-      new Vizitka("Dita (Přikrylová) Formánková", "Czechitas z. s.", "Václavské náměstí 837/11", "11000 Praha 1", "", "dita@czechitas.cs", "+420 800123456", "www.czechitas.cz"),
-            new Vizitka("Barbora Bühnová", "Czechitas z. s.", "Václavské náměstí 837/11", "11000 Praha 1", "", "dita@czechitas.cs", "+420 800123456", "www.czechitas.cz"),
-            new Vizitka("Monika Ptáčníková", "Czechitas z. s.", "Václavské náměstí 837/11", "11000 Praha 1", "", "monika@czechitas.cs", "+420 800123456", "www.czechitas.cz"),
-            new Vizitka("Mirka Zatloukalová", "Czechitas z. s.", "Václavské náměstí 837/11", "11000 Praha 1", "", "mirka@czechitas.cs", null, "www.czechitas.cz")
-    );
+    private final VizitkaService service;
+
+    public VizitkaController(VizitkaService service) {
+        this.service = service;
+    }
+
     @GetMapping("/")
     public ModelAndView seznam() {
         ModelAndView modelAndView = new ModelAndView("/seznam");
-        modelAndView.addObject("seznamVizitek",  seznamVizitek);
+        modelAndView.addObject("seznamVizitek",  service.getAll());
         return modelAndView;
     }
 
-    @GetMapping("/detail")
-    public ModelAndView detail() {
+    @GetMapping("/detail/{id}")
+    public ModelAndView detailVizitka(@PathVariable int id) {
         ModelAndView modelAndView = new ModelAndView("/detail");
-        modelAndView.addObject("seznamVizitek",  seznamVizitek);
+        modelAndView.addObject("vizitkaDetail",  service.getById(id));
         return modelAndView;
     }
 
-    @GetMapping("/detail/{index}")
-    public ModelAndView detailVizitka(@PathVariable int index) {
-        ModelAndView modelAndView = new ModelAndView("/detail");
-        modelAndView.addObject("vizitkaDetail",  seznamVizitek.get(index));
-        return modelAndView;
+
+    @PostMapping("/")
+    public String append(Vizitka vizitka) {
+        service.append(vizitka);
+        return "redirect:/";
     }
+
+    @PostMapping("/delete")
+    public String delete(int id) {
+        service.deleteById(id);
+        return "redirect:/";
+    }
+
 }
