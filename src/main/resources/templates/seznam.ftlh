@@ -35,9 +35,10 @@
         </div>
     </a>
     [/#list]
+</div>
 
     <div class="container">
-        <h2 class="container_h2">Přidej vizitku</h2>
+        <h1 class="container_h1">Přidej vizitku</h1>
         <form action="/" method="post" class="row g-3">
             <div class="container_field">
                 <div class="first_field">
@@ -94,7 +95,6 @@
             </div>
         </form>
             </div>
-    </a>
- </div>
+
 </body>
 </html>

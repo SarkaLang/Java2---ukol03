@@ -127,17 +127,26 @@ buttom,
     color: black;
     display: flex;
     flex-direction: column;
-    padding: 3%;
+    padding: 2%;
+    margin-bottom: 3%;
+    border-radius: 10px;
 }
 
-.container_h2 {
+.container_h1 {
     text-align: center;
+    background: -webkit-linear-gradient(right, #56d8e4, #9f01ea, #56d8e4, #9f01ea);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .first_field{
     display: flex;
     flex-direction: row;
     justify-content: center;
+}
+
+.first_field_fl {
+    padding-left: 3%;
 }
 
 
